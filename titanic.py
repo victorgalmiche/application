@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
+import argparse
+import os
+from dotenv import load_dotenv
+
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -14,10 +18,26 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import confusion_matrix
 
-N_TREES = 20
 MAX_DEPTH = None
 MAX_FEATURES = "sqrt"
-JETON_API = "$trotskitueleski1917"
+
+load_dotenv()
+
+# ENVIRONMENT CONFIGURATION ---------------------------
+
+parser = argparse.ArgumentParser(description="Paramètres du random forest")
+parser.add_argument(
+    "--n_trees", type=int, default=20, help="Nombre d'arbres"
+)
+args = parser.parse_args()
+
+N_TREES = args.n_trees
+jeton_api = os.environ["JETON_API"]
+
+if jeton_api.startswith("$"):
+    print("API token has been configured properly")
+else:
+    print("API token has not been configured")
 
 
 # IMPORT ET EXPLORATION DONNEES --------------------------------
