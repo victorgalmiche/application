@@ -17,12 +17,6 @@ spec:
     spec:
       containers:
       - name: titanic
-        image: compte_github/application:latest
+        image: victorgalmiche/application:latest
         ports:
         - containerPort: 8000
-        env:
-        - name: JETON_API
-          valueFrom:
-            secretKeyRef:
-              name: api-jeton
-              key: JETON_API

@@ -2,9 +2,7 @@ name: Construction image Docker
 
 on:
   push:
-    branches:
-      - main
-      - dev
+
 
 
 jobs:
@@ -28,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: compte_dockerhub/application:latest
+          tags: victorgalmiche/application:latest
